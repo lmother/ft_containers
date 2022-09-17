@@ -209,7 +209,7 @@ namespace ft{
             return iterator(begin() + current_position);
         }
 
-        void insert(iterator position, size_type n, const value_type& val) {
+        void insert (iterator position, size_type n, const value_type& val) {
             size_type distance = static_cast<size_type>(position - begin());
 
             if (position > end() || position < begin())
@@ -226,7 +226,7 @@ namespace ft{
         }
 
         template <class InputIterator>
-        void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0) {
+        void insert (iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = 0) {
             size_type size = static_cast<size_type>(last - first);
             size_type current_position = static_cast<size_type>(position - begin());
             
