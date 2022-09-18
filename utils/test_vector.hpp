@@ -4,8 +4,6 @@
 #include <iomanip>
 
 #include "../vector.hpp"
-#include "../stack.hpp"
-
 
 #include <iostream>
 #include <iterator>
@@ -16,12 +14,10 @@
 #include <ctime>
 
 template <class Vector, class Data>
-unsigned int add_any_data_to_vector(Vector vector, Data data, int size){
-    unsigned int start_time = clock();
+void add_any_data_to_vector(Vector vector, Data data, int size){
     for (int i = 0; i < size; ++i){
         vector.push_back(data);
     }
-    return start_time - clock();
 }
 
 template<class Vector>
@@ -32,8 +28,10 @@ void add_data_to_vector(Vector v, int size){
 }
 
 void print_time(unsigned int std_time, unsigned int ft_time){
-    std::cout << std::setfill(' ') << std::fixed << std::setprecision(3) << (ft_time <= std_time ? FOREGRN : FORERED) <<  std::setw(10) << "FT_time: " << ft_time/1000.0 << CL ;
-    std::cout << (ft_time <= std_time ? FORERED : FOREGRN) <<  std::setw(10) << "| STD_time: "  << std_time/1000.0 << CL << "\n" ;
+    std::cout << std::setfill(' ') << std::fixed << std::setprecision(3) << (ft_time <= std_time ? FOREGRN : FORERED) 
+                <<  std::setw(10) << "FT_time: " << std::setw(8) << ft_time/1000.0 << CL ;
+    std::cout << (ft_time <= std_time ? FORERED : FOREGRN) 
+                << std::setw(10) << "| STD_time: " << std::setw(8) << std_time/1000.0 << "|" CL << "\n" ;
 }
 
 template <class Vector1, class Vector2>
@@ -45,7 +43,7 @@ void compare_vectors(Vector1 stl_v1, Vector2 v2, std::string massege, unsigned i
     else{
         for(size_t i = 0; i < stl_v1.size(); ++i)
             if(stl_v1[i] != v2[i]){
-                std::cout << std::left << std::setw(30) << massege << std::setw(5)<< FORERED <<  "KO \n" << CL;
+                std::cout << std::setfill('-') << std::left << std::setw(30) << massege << std::setw(5)<< FORERED <<  "KO \n" << CL;
                 return;
             }
     }
@@ -56,7 +54,7 @@ void compare_vectors(Vector1 stl_v1, Vector2 v2, std::string massege, unsigned i
 
 template<class T>
 void test_constructor(T data, std::string type){
-    std::cout << BACKMAG << "START TEST CONSTRUCTOR with type: " << type << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(40)  << "START TEST CONSTRUCTOR with type: " << std::setw(34) << type << CL << "\n\n";
 
     std::vector<T>    stl_first;
     ft::vector<T>     my_first;
@@ -76,28 +74,23 @@ void test_constructor(T data, std::string type){
 }
 
 void test_opertor(){
-    std::cout << BACKMAG << "START TEST OPERATOR=..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST OPERATOR=..." << CL << "\n\n";
 
-    std::vector<int> std_foo;
-    add_any_data_to_vector(std_foo, 1234, 1200);
-    std::vector<int> std_bar;
-    add_any_data_to_vector(std_bar, 4321, 1999);
+    std::vector<int> std_foo(1234, 1200);
+    std::vector<int> std_bar(4321, 1999);
 
-    ft::vector<int> ft_foo;
-    add_any_data_to_vector(ft_foo, 1234, 1200);
-    ft::vector<int> ft_bar;
-    add_any_data_to_vector(ft_bar, 4321, 1999);
-
+    ft::vector<int> ft_foo(1234, 1200);
+    ft::vector<int> ft_bar(4321, 1999);
 
     unsigned int time_std = clock();
     std_bar = std_foo;
-    std_foo = std::vector<int>();
+    std_foo.clear();
     unsigned int time_std_end = clock() - time_std;
 
 
     unsigned int time_ft = clock();
     ft_bar = ft_foo;
-    ft_foo = ft::vector<int>();
+    ft_foo.clear();
     unsigned int time_ft_end = clock() - time_ft;
 
     compare_vectors(std_foo, ft_foo, "test1", time_std_end, time_ft_end);
@@ -105,7 +98,7 @@ void test_opertor(){
 }
 
 void test_operator1(){
-    std::cout << BACKMAG << "START TEST OPERATOR[]..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST OPERATOR[]..." << CL << "\n\n";
 
     std::vector<int> std_vector (1000000);
     ft::vector<int> ft_vector (1000000);
@@ -143,7 +136,7 @@ void test_operator1(){
 }
 
 void test_begin(){
-    std::cout << BACKMAG << "START TEST begin()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST begin()..." << CL << "\n\n";
     
     std::vector<int> std_vector;
     std::vector<int> std_res;
@@ -167,7 +160,7 @@ void test_begin(){
 }
 
 void test_end(){
-    std::cout << BACKMAG << "START TEST end()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST end()..." << CL << "\n\n";
     
     std::vector<int> std_vector;
     std::vector<int> std_vector1;
@@ -230,7 +223,7 @@ void test_end(){
 }
 
 void test_rbegin(){
-    std::cout << BACKMAG << "START TEST rbegin()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST rbegin()..." << CL << "\n\n";
     
     std::vector<int> std_vector;
     std::vector<int> std_vector1;
@@ -293,7 +286,7 @@ void test_rbegin(){
 }
 
 void test_rend(){
-    std::cout << BACKMAG << "START TEST rend()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST rend()..." << CL << "\n\n";
     
     std::vector<int> std_vector;
     std::vector<int> std_vector1;
@@ -356,7 +349,7 @@ void test_rend(){
 }
 
 void test_size(){
-    std::cout << BACKMAG << "START TEST size()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST size()..." << CL << "\n\n";
     unsigned int time_std = clock();
     std::vector<int> std_vector;
     unsigned int time_std_end = clock() - time_std;
@@ -379,7 +372,7 @@ void test_size(){
 }
 
 void test_resize(){
-    std::cout << BACKMAG << "START TEST resize()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST resize()..." << CL << "\n\n";
     std::vector<int> std_vector;
     for (int i=1;i<10000;i++) std_vector.push_back(i);
     ft::vector<int> ft_vector;
@@ -417,7 +410,7 @@ void test_resize(){
 }
 
 void test_empty(){
-    std::cout << BACKMAG << "START TEST empty()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST empty()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
     compare_vectors(std_vector, ft_vector, "test1", 0, 0);
@@ -434,7 +427,7 @@ void test_empty(){
 }
 
 void test_reserve(){
-    std::cout << BACKMAG << "START TEST reserve()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST reserve()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
 
@@ -464,7 +457,7 @@ void test_reserve(){
 }
 
 void test_at(){
-    std::cout << BACKMAG << "START TEST at()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST at()..." << CL << "\n\n";
     std::vector<int> std_vector (10);
     ft::vector<int> ft_vector (10);
 
@@ -486,7 +479,7 @@ void test_at(){
 }
 
 void test_front(){
-    std::cout << BACKMAG << "START TEST front()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST front()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
 
@@ -506,7 +499,7 @@ void test_front(){
 }
 
 void test_back(){
-    std::cout << BACKMAG << "START TEST back()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST back()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
 
@@ -535,7 +528,7 @@ void test_back(){
 }
 
 void test_assign(){
-    std::cout << BACKMAG << "START TEST assign()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST assign()..." << CL << "\n\n";
     std::vector<int>    std_first;
     std::vector<int>    std_second;
     std::vector<int>    std_third;
@@ -579,7 +572,7 @@ void test_assign(){
 }
 
 void test_push_back(){
-    std::cout << BACKMAG << "START TEST push_back()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST push_back()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
 
@@ -603,7 +596,7 @@ void test_push_back(){
 }
 
 void test_pop_back(){
-    std::cout << BACKMAG << "START TEST pop_back()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST pop_back()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
     add_data_to_vector(std_vector, 10000000);
@@ -621,12 +614,392 @@ void test_pop_back(){
     compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
 }
 
+void test_insert(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST insert()..." << CL << "\n\n";
 
+    std::vector<int> std_vector (300000,100);
+    std::vector<int>::iterator std_it_begin = std_vector.begin();
+    //std::vector<int>::iterator std_it_center = std_vector.begin() + std_vector.size()/2;
+    ft::vector<int> ft_vector (300000,100);
+    ft::vector<int>::iterator ft_it_begin = ft_vector.begin();
+    //ft::vector<int>::iterator ft_it_center = ft_vector.begin() + ft_vector.size()/2;
+    //test1
+    unsigned int time_std = clock();
+    std_it_begin = std_vector.insert( std_it_begin , 200 );
+    unsigned int time_std_end = clock() - time_std;
 
+    unsigned int time_ft = clock();
+    ft_it_begin = ft_vector.insert( ft_it_begin , 200 );
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
+    //test2
+    time_std = clock();
+    std_vector.insert (std_it_begin,211,300);
+    time_std_end = clock() - time_std;
 
+    time_ft = clock();
+    ft_vector.insert (ft_it_begin,211,300);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test2", time_std_end, time_ft_end);
+    //test3
+    std_it_begin = std_vector.begin();
+    std::vector<int> std_anothervector (20,400);
+    time_std = clock();
+    std_vector.insert (std_it_begin + 100,std_anothervector.begin(),std_anothervector.end());
+    time_std_end = clock() - time_std;
+    
+    ft_it_begin = ft_vector.begin();
+    ft::vector<int> ft_anothervector (20,400);
+    time_ft = clock();
+    ft_vector.insert (ft_it_begin + 100,ft_anothervector.begin(),ft_anothervector.end());
+    time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test3", time_std_end, time_ft_end);
+    //test4
+    int myarray [] = { 501,502,503, 2325, 324, 2321, 234, 234, 678, 345, 567568, 234, 234};
+    time_std = clock();
+    std_vector.insert (std_vector.begin(), myarray, myarray+3);
+    time_std_end = clock() - time_std;
 
+    time_ft = clock();
+    ft_vector.insert (ft_vector.begin(), myarray, myarray+3);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test4", time_std_end, time_ft_end);
+}
 
+void test_erase(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST erase()..." << CL << "\n\n";
+    std::vector<int> std_vector(30000, 123);
+    ft::vector<int> ft_vector(30000, 123);
 
+    unsigned int time_std = clock();
+    std_vector.erase(std_vector.begin() + 23);
+    unsigned int time_std_end = clock() - time_std;
 
+    unsigned int time_ft = clock();
+    ft_vector.erase(ft_vector.begin() + 23);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
 
+    time_std = clock();
+    std_vector.erase(std_vector.begin(), std_vector.begin() + 200);
+    time_std_end = clock() - time_std;
 
+    time_ft = clock();
+    ft_vector.erase(ft_vector.begin(), ft_vector.begin() + 200);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test2", time_std_end, time_ft_end);
+}
+
+void test_swap(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST swap()..." << CL << "\n\n";
+    std::vector<int> std_vector(300000, 987654);
+    std::vector<int> std_swap(2345, 1123);
+    ft::vector<int> ft_vector(300000, 987654);
+    ft::vector<int> ft_swap(2345, 1123);
+
+    unsigned int time_std = clock();
+    std_vector.swap(std_swap);
+    unsigned int time_std_end = clock() - time_std;
+
+    unsigned int time_ft = clock();
+    ft_vector.swap(ft_swap);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
+}
+
+void test_clear(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST clear()..." << CL << "\n\n";
+    std::vector<int> std_vector(50000000,654);
+    ft::vector<int> ft_vector(50000000,654);
+
+    unsigned int time_std = clock();
+    std_vector.clear();
+    unsigned int time_std_end = clock() - time_std;
+
+    unsigned int time_ft = clock();
+    ft_vector.clear();
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
+}
+
+void test_operator2(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator==()..." << CL << "\n\n";
+
+    {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(200, 321);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector == std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(200, 231);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector == ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_res, ft_res, "test1", time_std_end, time_ft_end);
+    }
+    {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(200, 123);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector == std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(200, 123);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector == ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_res, ft_res, "test2", time_std_end, time_ft_end);
+    }
+}
+
+void test_operator3(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator!=()..." << CL << "\n\n";
+
+    {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(200, 231);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector != std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(200, 231);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector != ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
+    }
+
+     {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(20, 123);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector != std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(20, 123);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector != ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test2", time_std_end, time_ft_end);
+    }
+}
+
+void test_operator4(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator<()..." << CL << "\n\n";
+
+    {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(200, 231);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector < std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(200, 231);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector < ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
+    }
+
+     {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(20, 123);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector < std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(20, 123);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector < ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test2", time_std_end, time_ft_end);
+    }
+}
+
+void test_operator5(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator<=()..." << CL << "\n\n";
+
+    {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(200, 231);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector <= std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(200, 231);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector <= ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
+    }
+
+     {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(20, 123);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector <= std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(20, 123);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector <= ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test2", time_std_end, time_ft_end);
+    }
+    {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(200, 123);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector <= std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(200, 123);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector <= ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test2", time_std_end, time_ft_end);
+    }
+}
+
+void test_operator6(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator>()..." << CL << "\n\n";
+
+    {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(200, 231);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector > std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(200, 231);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector > ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
+    }
+
+     {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(20, 123);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector > std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(20, 123);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector > ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test2", time_std_end, time_ft_end);
+    }
+}
+
+void test_operator7(){
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator>=()..." << CL << "\n\n";
+
+    {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(200, 231);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector >= std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(200, 231);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector >= ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test1", time_std_end, time_ft_end);
+    }
+
+     {
+        std::vector<int> std_vector(200, 123);
+    std::vector<int> std_other(20, 123);
+    std::vector<int> std_res;
+
+    
+    unsigned int time_std = clock();
+    std_vector >= std_other?std_res.push_back(1):std_res.push_back(0);
+    unsigned int time_std_end = clock() - time_std;
+
+    ft::vector<int> ft_vector(200, 123);
+    ft::vector<int> ft_other(20, 123);
+    ft::vector<int> ft_res;
+    
+    unsigned int time_ft = clock();
+    ft_vector >= ft_other?ft_res.push_back(1):ft_res.push_back(0);
+    unsigned int time_ft_end = clock() - time_ft;
+    compare_vectors(std_vector, ft_vector, "test2", time_std_end, time_ft_end);
+    }
+}

@@ -198,7 +198,7 @@ namespace ft{
             size_type current_position = static_cast<size_type>(position - begin());
             
             if (position < begin() || position > end())
-                throw std::out_of_range("Error: Iterator bad position!");
+                throw std::out_of_range("Error: Iterator bad position");
             reserve(_size + 1 > _capacity ? _capacity * 2 : 0);
             for (size_type i = 1; i + current_position < _size + 1; i++) {
                 _alloc.construct(_pointer + i + current_position, _pointer[current_position + i - 1]);
