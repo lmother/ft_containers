@@ -37,6 +37,16 @@ void start_test_vector(){
 
 void start_test_stack(){
 	test_stack_constructor();
+	test_stack_empty();
+	test_stack_size();
+	test_stack_top();
+	test_stack_push();
+	test_stack_operator1();
+	test_stack_operator2();
+	test_stack_operator3();
+	test_stack_operator4();
+	test_stack_operator5();
+	test_stack_operator6();
 }
 
 
