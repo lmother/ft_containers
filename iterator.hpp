@@ -2,8 +2,80 @@
 
 #include "traits.hpp"
 #include <iostream>
+#include "pair.hpp"
+#include "utils.hpp"
 
 namespace ft {
+    template <class T>
+    class map_iterator{
+    public:
+        typedef typename iterator_type<T*>::difference_type         difference_type;
+        typedef typename iterator_type<T*>::value_type              value_type;
+        typedef typename iterator_type<T*>::pointer                 pointer;
+        typedef typename iterator_type<T*>::reference               reference;
+        typedef ft::node<typename ft::switch_const <T>::type>*      node_ptr;
+        typedef std::bidirectional_iterator_tag                     iterator_category;
+    private:
+        node_ptr    _root;
+        node_ptr    _base;
+
+        node_ptr min_node(node_ptr other) const{
+            if (other){
+                while(other->left)
+                    other = other->left;
+            }
+            return other;
+        }
+
+        node_ptr max_node(node_ptr other) const{
+            if (other){
+                while(other->right)
+                    other = other->right;
+            }
+            return other;
+        }
+    public:
+        map_iterator(): _root(0), _base(0){}
+
+        explicit map_iterator(const node_ptr& root, const node_ptr& node) : _root(root), _base(node){}
+
+        map_iterator(const map_iterator& other) : _root(other._root), _base(other._base){}
+
+        ~map_iterator() {}
+
+        template <class Type>
+        operator map_iterator<const Type>() const{
+            return map_iterator<const Type>(_root, _base);
+        }
+
+        reference operator*() const{
+            return _base->pair;
+        }
+
+        pointer operator->() const{
+            return &(_base->pair);
+        }
+
+        map_iterator& operator++(){
+            if (!_base)
+                return *this;
+            else if (_base->right)
+                _base = min_node(_base->right);
+            else if (_base = max_node(_root->parent))
+                _base = 0;
+            else{
+                while(_base->parent->right == _base)
+                    _base = _base->parent;
+                _base = _base->parent;
+            }
+            return *this;
+        }
+
+
+
+
+    };
+
     template <class T>
     class vector_iterator {
     private:

@@ -3,6 +3,17 @@
 #include "./utils/test_stack.hpp"
 #include <string.h>
 
+void print_header(std::string str){
+	std::cout << BACKWHT << std::left << std::setfill(' ') << std::setw(40)  << "START TEST " << std::setw(34) << str << CL << "\n\n";
+}
+
+void print_menu(){
+	std::cout << "\n# Try input one argument:\n" 
+		<<  FOREMAG << "\"1\" - test_vector\n" << CL
+		<< FOREBLU << "\"2\" - test_stack\n" << CL
+		<< FOREGRN "\"3\" - test_map\n" << CL;
+}
+
 void start_test_vector(){
 	test_constructor("str", "STRING...");
 	test_constructor(123, "INT...");
@@ -52,14 +63,18 @@ void start_test_stack(){
 
 int main(int av, char** ac) {
 	if (av == 2){
-		if(!strncmp("1", ac[1], 1))
+		if(!strncmp("1", ac[1], 1)){
+			print_header("vector");
 			start_test_vector();
-		else if(!strncmp("2", ac[1], 1))
-			start_test_stack();
-		else{
-			std::cout << "\ntry input arguments:\n \"1\" - test_vector\n \"2\" - test_stack\n \"3\" - test_map\n";
 		}
-	}else
-		std::cout << "try input arguments:\n \"1\" - test_vector\n \"2\" - test_stack\n \"3\" - test_map\n";
+		else if(!strncmp("2", ac[1], 1)){
+			print_header("stack");
+			start_test_stack();
+		}
+		else
+			print_menu();
+	}
+	else
+		print_menu();
 	return (0);
 }

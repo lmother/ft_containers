@@ -3,6 +3,15 @@
 #include "traits.hpp"
 
 namespace ft {
+    template <class T>
+    struct switch_const{
+        typedef T type;
+    };
+
+    template <class T>
+	struct switch_const<const T> {
+		typedef T type;
+	};
 
     template <class Arg1, class Arg2, class Result> 
     struct binary_function {

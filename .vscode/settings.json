@@ -77,6 +77,9 @@
         "ranges": "cpp",
         "stop_token": "cpp",
         "iomanip": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "__functional_03": "cpp",
+        "__functional_base_03": "cpp",
+        "__memory": "cpp"
     }
 }
