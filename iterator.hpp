@@ -2,17 +2,17 @@
 
 #include "traits.hpp"
 #include <iostream>
-#include "pair.hpp"
+#include "tree.hpp"
 #include "utils.hpp"
 
 namespace ft {
     template <class T>
     class map_iterator{
     public:
-        typedef typename iterator_type<T*>::difference_type         difference_type;
-        typedef typename iterator_type<T*>::value_type              value_type;
-        typedef typename iterator_type<T*>::pointer                 pointer;
-        typedef typename iterator_type<T*>::reference               reference;
+        typedef typename iterator_traits<T*>::difference_type         difference_type;
+        typedef typename iterator_traits<T*>::value_type              value_type;
+        typedef typename iterator_traits<T*>::pointer                 pointer;
+        typedef typename iterator_traits<T*>::reference               reference;
         typedef ft::node<typename ft::switch_const <T>::type>*      node_ptr;
         typedef std::bidirectional_iterator_tag                     iterator_category;
     private:
@@ -61,7 +61,7 @@ namespace ft {
                 return *this;
             else if (_base->right)
                 _base = min_node(_base->right);
-            else if (_base = max_node(_root->parent))
+            else if (_base == max_node(_root->parent))
                 _base = 0;
             else{
                 while(_base->parent->right == _base)
@@ -71,10 +71,40 @@ namespace ft {
             return *this;
         }
 
+        map_iterator operator++(int){
+            map_iterator<T> tmp(*this);
+            return tmp;
+        }
 
+        map_iterator& operator--(){
+            if (!_base)
+                _base = max_node(_root->parent);
+            else if (_base->left)
+                _base = max_node(_base->left);
+            else {
+                while(_base->parent->left == _base)
+                    _base = _base->parent;
+                _base = _base->parent;
+            }
+            return *this;
+        }
 
+        map_iterator operator--(int){
+            map_iterator<T> tmp(*this);
+            --(*this);
+            return tmp;
+        }
 
+        template <class Iterator1, class Iterator2>
+        friend bool operator ==(const map_iterator<Iterator1>& a, const map_iterator<Iterator2>& b){
+            return a._base == b._base;
+        }
     };
+
+    template <class Iterator1, class Iterator2>
+        bool operator !=(const map_iterator<Iterator1>& a, const map_iterator<Iterator2>& b){
+            return !(a == b);
+        }
 
     template <class T>
     class vector_iterator {
