@@ -34,7 +34,8 @@ namespace ft {
 
         template<class U, class V> 
         pair (const pair<U,V>& pr) : first(static_cast<Key>(pr.first)), second(static_cast<Val>(pr.second)){}
-        pair (const first_type& a, const second_type& b): first(a), second(b){};
+        
+        pair (const first_type& a, const second_type& b): first(a), second(b){}
 
         pair& operator= (const pair& pr){
             first = pr.first;

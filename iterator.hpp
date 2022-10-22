@@ -96,10 +96,13 @@ namespace ft {
         }
 
         template <class Iterator1, class Iterator2>
-        friend bool operator ==(const map_iterator<Iterator1>& a, const map_iterator<Iterator2>& b){
+        friend bool operator ==(const map_iterator<Iterator1>& a, const map_iterator<Iterator2>& b);
+    };
+
+    template <class Iterator1, class Iterator2>
+        bool operator ==(const map_iterator<Iterator1>& a, const map_iterator<Iterator2>& b){
             return a._base == b._base;
         }
-    };
 
     template <class Iterator1, class Iterator2>
         bool operator !=(const map_iterator<Iterator1>& a, const map_iterator<Iterator2>& b){
@@ -262,14 +265,14 @@ namespace ft {
     template <class T>
     class reverse_iterator {
     private:
-        typedef iterator_traits<T> iterator_traits;
+        typedef iterator_traits<T> traits_type;
         T _val;
     public:
-        typedef typename iterator_traits::difference_type       difference_type;
-        typedef typename iterator_traits::value_type            value_type;
-        typedef typename iterator_traits::pointer               pointer;
-        typedef typename iterator_traits::reference             reference;
-        typedef typename iterator_traits::iterator_category     iterator_category;
+        typedef typename traits_type::difference_type       difference_type;
+        typedef typename traits_type::value_type            value_type;
+        typedef typename traits_type::pointer               pointer;
+        typedef typename traits_type::reference             reference;
+        typedef typename traits_type::iterator_category     iterator_category;
 
         reverse_iterator() : _val(T()) {}
 

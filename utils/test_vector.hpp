@@ -54,7 +54,7 @@ void compare_vectors(Vector1 stl_v1, Vector2 v2, std::string massege, unsigned i
 
 template<class T>
 void test_constructor(T data, std::string type){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(40)  << "START TEST CONSTRUCTOR with type: " << std::setw(34) << type << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(40)  << "START TEST : CONSTRUCTOR with type: " << std::setw(34) << type << CL << "\n\n";
 
     std::vector<T>    stl_first;
     ft::vector<T>     my_first;
@@ -74,7 +74,7 @@ void test_constructor(T data, std::string type){
 }
 
 void test_opertor(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST OPERATOR=..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : OPERATOR=..." << CL << "\n\n";
 
     std::vector<int> std_foo(1234, 1200);
     std::vector<int> std_bar(4321, 1999);
@@ -98,7 +98,7 @@ void test_opertor(){
 }
 
 void test_operator1(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST OPERATOR[]..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : OPERATOR[]..." << CL << "\n\n";
 
     std::vector<int> std_vector (1000000);
     ft::vector<int> ft_vector (1000000);
@@ -136,7 +136,7 @@ void test_operator1(){
 }
 
 void test_begin(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST begin()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : begin()..." << CL << "\n\n";
     
     std::vector<int> std_vector;
     std::vector<int> std_res;
@@ -160,7 +160,7 @@ void test_begin(){
 }
 
 void test_end(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST end()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : end()..." << CL << "\n\n";
     
     std::vector<int> std_vector;
     std::vector<int> std_vector1;
@@ -223,7 +223,7 @@ void test_end(){
 }
 
 void test_rbegin(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST rbegin()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : rbegin()..." << CL << "\n\n";
     
     std::vector<int> std_vector;
     std::vector<int> std_vector1;
@@ -286,7 +286,7 @@ void test_rbegin(){
 }
 
 void test_rend(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST rend()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : rend()..." << CL << "\n\n";
     
     std::vector<int> std_vector;
     std::vector<int> std_vector1;
@@ -349,7 +349,7 @@ void test_rend(){
 }
 
 void test_size(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST size()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : size()..." << CL << "\n\n";
     unsigned int time_std = clock();
     std::vector<int> std_vector;
     unsigned int time_std_end = clock() - time_std;
@@ -372,7 +372,7 @@ void test_size(){
 }
 
 void test_resize(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST resize()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : resize()..." << CL << "\n\n";
     std::vector<int> std_vector;
     for (int i=1;i<10000;i++) std_vector.push_back(i);
     ft::vector<int> ft_vector;
@@ -410,7 +410,7 @@ void test_resize(){
 }
 
 void test_empty(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST empty()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : empty()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
     compare_vectors(std_vector, ft_vector, "test1", 0, 0);
@@ -427,7 +427,7 @@ void test_empty(){
 }
 
 void test_reserve(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST reserve()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : reserve()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
 
@@ -457,7 +457,7 @@ void test_reserve(){
 }
 
 void test_at(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST at()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : at()..." << CL << "\n\n";
     std::vector<int> std_vector (10);
     ft::vector<int> ft_vector (10);
 
@@ -479,7 +479,7 @@ void test_at(){
 }
 
 void test_front(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST front()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : front()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
 
@@ -499,7 +499,7 @@ void test_front(){
 }
 
 void test_back(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST back()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : back()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
 
@@ -528,7 +528,7 @@ void test_back(){
 }
 
 void test_assign(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST assign()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : assign()..." << CL << "\n\n";
     std::vector<int>    std_first;
     std::vector<int>    std_second;
     std::vector<int>    std_third;
@@ -572,7 +572,7 @@ void test_assign(){
 }
 
 void test_push_back(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST push_back()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : push_back()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
 
@@ -596,7 +596,7 @@ void test_push_back(){
 }
 
 void test_pop_back(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST pop_back()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : pop_back()..." << CL << "\n\n";
     std::vector<int> std_vector;
     ft::vector<int> ft_vector;
     add_data_to_vector(std_vector, 10000000);
@@ -615,7 +615,7 @@ void test_pop_back(){
 }
 
 void test_insert(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST insert()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : insert()..." << CL << "\n\n";
 
     std::vector<int> std_vector (300000,100);
     std::vector<int>::iterator std_it_begin = std_vector.begin();
@@ -667,7 +667,7 @@ void test_insert(){
 }
 
 void test_erase(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST erase()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : erase()..." << CL << "\n\n";
     std::vector<int> std_vector(30000, 123);
     ft::vector<int> ft_vector(30000, 123);
 
@@ -691,7 +691,7 @@ void test_erase(){
 }
 
 void test_swap(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST swap()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : swap()..." << CL << "\n\n";
     std::vector<int> std_vector(300000, 987654);
     std::vector<int> std_swap(2345, 1123);
     ft::vector<int> ft_vector(300000, 987654);
@@ -708,7 +708,7 @@ void test_swap(){
 }
 
 void test_clear(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST clear()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : clear()..." << CL << "\n\n";
     std::vector<int> std_vector(50000000,654);
     ft::vector<int> ft_vector(50000000,654);
 
@@ -723,7 +723,7 @@ void test_clear(){
 }
 
 void test_operator2(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator==()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : operator==()..." << CL << "\n\n";
 
     {
         std::vector<int> std_vector(200, 123);
@@ -766,7 +766,7 @@ void test_operator2(){
 }
 
 void test_operator3(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator!=()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : operator!=()..." << CL << "\n\n";
 
     {
         std::vector<int> std_vector(200, 123);
@@ -810,7 +810,7 @@ void test_operator3(){
 }
 
 void test_operator4(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator<()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : operator<()..." << CL << "\n\n";
 
     {
         std::vector<int> std_vector(200, 123);
@@ -854,7 +854,7 @@ void test_operator4(){
 }
 
 void test_operator5(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator<=()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : operator<=()..." << CL << "\n\n";
 
     {
         std::vector<int> std_vector(200, 123);
@@ -917,7 +917,7 @@ void test_operator5(){
 }
 
 void test_operator6(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator>()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : operator>()..." << CL << "\n\n";
 
     {
         std::vector<int> std_vector(200, 123);
@@ -961,7 +961,7 @@ void test_operator6(){
 }
 
 void test_operator7(){
-    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST operator>=()..." << CL << "\n\n";
+    std::cout << BACKMAG << std::left << std::setfill(' ') << std::setw(74)  << "START TEST : operator>=()..." << CL << "\n\n";
 
     {
         std::vector<int> std_vector(200, 123);

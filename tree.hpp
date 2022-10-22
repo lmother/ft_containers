@@ -23,7 +23,7 @@ namespace ft{
         void delete_node(node_ptr node){
             if (node){
                 _alloc.destroy(node);
-                _alloc.dealocate(node, 1);
+                _alloc.deallocate(node, 1);
             }
         }
 
@@ -52,7 +52,7 @@ namespace ft{
 
         node_ptr find_node(node_ptr tmp, Value key) const{
             if (tmp){
-                if (_compare(tmp->par, key))
+                if (_compare(tmp->pair, key))
                     return find_node(tmp->right, key);
                 else if (_compare(key, tmp->pair))
                     return find_node(tmp->left, key);
@@ -112,12 +112,12 @@ namespace ft{
                         if(parent->isBlack == true)
                             node = parent;
                         else if(grand){
-                            if(grand->left && grand->left->isBlack == false && grand->right && grand->right->isBlack == false){
+                            if((grand->left && grand->left->isBlack == false) && (grand->right && grand->right->isBlack == false)){
                                 swap_color(grand);
                                 node = grand;
                             }
                             else if(grand->right == parent){
-                                if(parent->right == node){
+                                if(parent->left == node){
                                     rotate_right(parent, root);
                                     parent = node;
                                 }

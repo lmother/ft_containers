@@ -33,7 +33,7 @@ void compare_stacks(Stack1 stl_s1, Stack2 s2, std::string massege, unsigned int 
 
 void test_stack_constructor(){      
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST constructor()..." << CL << "\n\n";
+            << "START TEST : constructor()..." << CL << "\n\n";
     std::vector<int> std_vector (220000,200);
     ft::vector<int> ft_vector (220000,200);                
 
@@ -49,7 +49,7 @@ void test_stack_constructor(){
 
 void test_stack_empty(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST empty()..." << CL << "\n\n";
+            << "START TEST : empty()..." << CL << "\n\n";
     std::stack<int> std_stack;
     std::stack<int> std_others;
     std::stack<int> std_res;
@@ -73,7 +73,7 @@ void test_stack_empty(){
 
 void test_stack_size(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST size()..." << CL << "\n\n";
+            << "START TEST : size()..." << CL << "\n\n";
     std::stack <int> std_stack;
     ft::stack<int> ft_stack;
     std::stack<int> std_res;
@@ -105,7 +105,7 @@ void test_stack_size(){
 
 void test_stack_top(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST top()..." << CL << "\n\n";
+            << "START TEST : top()..." << CL << "\n\n";
     std::stack <int> std_stack;
     ft::stack<int> ft_stack;
     std::stack<int> std_res;
@@ -137,7 +137,7 @@ void test_stack_top(){
 
 void test_stack_push(){
      std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST push()..." << CL << "\n\n";
+            << "START TEST : push()..." << CL << "\n\n";
     std::stack<int> std_stack;
     ft::stack<int> ft_stack;
     unsigned int time_std = clock();
@@ -153,7 +153,7 @@ void test_stack_push(){
 
 void test_stack_operator1(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST operator==()..." << CL << "\n\n";
+            << "START TEST : operator==()..." << CL << "\n\n";
 
     {
         std::stack<int> std_stack;
@@ -212,7 +212,7 @@ void test_stack_operator1(){
 
 void test_stack_operator2(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST operator!=()..." << CL << "\n\n";
+            << "START TEST : operator!=()..." << CL << "\n\n";
     {
         std::stack<int> std_stack;
         for(int i = 1; i < 100000; ++i)
@@ -270,7 +270,7 @@ void test_stack_operator2(){
 
 void test_stack_operator3(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST operator<()..." << CL << "\n\n";
+            << "START TEST : operator<()..." << CL << "\n\n";
     {
         std::stack<int> std_stack;
         for(int i = 1; i < 100000; ++i)
@@ -328,7 +328,7 @@ void test_stack_operator3(){
 
 void test_stack_operator4(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST operator<=()..." << CL << "\n\n";
+            << "START TEST : operator<=()..." << CL << "\n\n";
      {
         std::stack<int> std_stack;
         for(int i = 1; i < 100000; ++i)
@@ -386,7 +386,7 @@ void test_stack_operator4(){
 
 void test_stack_operator5(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST operator>()..." << CL << "\n\n";
+            << "START TEST : operator>()..." << CL << "\n\n";
          {
         std::stack<int> std_stack;
         for(int i = 1; i < 100000; ++i)
@@ -444,7 +444,7 @@ void test_stack_operator5(){
 
 void test_stack_operator6(){
     std::cout << BACKBLU << std::left << std::setfill(' ') << std::setw(74) 
-            << "START TEST operator>=()..." << CL << "\n\n";
+            << "START TEST : operator>=()..." << CL << "\n\n";
              {
         std::stack<int> std_stack;
         for(int i = 1; i < 100000; ++i)

@@ -1,10 +1,12 @@
 
 #include "./utils/test_vector.hpp"
 #include "./utils/test_stack.hpp"
+#include "./utils/test_map.hpp"
 #include <string.h>
 
 void print_header(std::string str){
-	std::cout << BACKWHT << std::left << std::setfill(' ') << std::setw(40)  << "START TEST " << std::setw(34) << str << CL << "\n\n";
+	std::cout << BACKWHT << std::left << std::setfill(' ') << std::setw(40)  
+		<< "START TEST " << std::setw(34) << str << CL << "\n\n";
 }
 
 void print_menu(){
@@ -60,16 +62,24 @@ void start_test_stack(){
 	test_stack_operator6();
 }
 
+void start_test_map(){
+	test_map_constructor();
+}
+
 
 int main(int av, char** ac) {
 	if (av == 2){
 		if(!strncmp("1", ac[1], 1)){
-			print_header("vector");
+			print_header("VECTOR");
 			start_test_vector();
 		}
 		else if(!strncmp("2", ac[1], 1)){
-			print_header("stack");
+			print_header("STACK");
 			start_test_stack();
+		}
+		else if(!strncmp("3", ac[1], 1)){
+			print_header("MAP");
+			start_test_map();
 		}
 		else
 			print_menu();

@@ -6,8 +6,9 @@
         "name": "C++ Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/a.out",
-        "args": ["arg1", "arg2"],
+        "program": "${workspaceFolder}/containers",
+        "args": ["1"],
         "environment": [{ "name": "config", "value": "Debug" }],
-        "cwd": "${workspaceFolder}"
+        "cwd": "${workspaceFolder}",
+        "configurations": []
 }

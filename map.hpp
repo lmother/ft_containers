@@ -6,7 +6,7 @@
 
 
 namespace ft{
-    template < class Key, class T, class Compare = ft::less<Key>, class Alloc = std::allocator< pair<const Key, T> >>
+    template < class Key, class T, class Compare = ft::less<Key>, class Alloc = std::allocator< pair<const Key, T> > >
     class map{
     public:
         typedef Key                                         key_type;
@@ -40,15 +40,15 @@ namespace ft{
     public:
         typedef pair_compare value_compare;
     private:
-        typedef typename Alloc::template rebind <node <value_type>>::other  node_allocator_type;
-        typedef Tree <value_type, pair_compare, node_allocator_type>        tree_type;
-        typedef typename ft::node<value_type>*                              node_ptr;
-        tree_type       _tree;
-        node_ptr        _root;
-        allocator_type  _alloc;
-        key_compare     _k_comp;
-        value_compare   _v_comp;
-        size_type       _size;
+        typedef typename Alloc::template rebind < node <value_type> >::other    node_allocator_type;
+        typedef Tree <value_type, pair_compare, node_allocator_type>            tree_type;
+        typedef typename ft::node<value_type>*                                  node_ptr;
+        tree_type                                                               _tree;
+        node_ptr                                                                _root;
+        allocator_type                                                          _alloc;
+        key_compare                                                             _k_comp;
+        value_compare                                                           _v_comp;
+        size_type                                                               _size;
     public:
         explicit map(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()): _root(0), _alloc(alloc), _k_comp(comp), _size(0){
             _root = _tree.create_node(value_type());
