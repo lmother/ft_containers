@@ -64,10 +64,20 @@ void start_test_stack(){
 
 void start_test_map(){
 	test_map_constructor();
+	test_map_operator1();
+	test_map_begin();
+	test_map_clear();
+	test_map_count();
+	test_map_empty();
+	test_map_end();
+	test_map_equal_range();
+	test_map_erase();
+	test_map_find();
 }
 
 
 int main(int av, char** ac) {
+	test_map_end();
 	if (av == 2){
 		if(!strncmp("1", ac[1], 1)){
 			print_header("VECTOR");

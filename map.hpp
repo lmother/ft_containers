@@ -151,13 +151,13 @@ namespace ft{
         }
 
         void erase(iterator position){
-            bool res = _tree.erase(&_root->parent, *position);
+            bool res = _tree.arase(&_root->parent, *position);
             if(res)
                 --_size;
         }
 
         size_type erase(const key_type& k){
-            bool res = (bool)_tree.erase(&_root->parent, bind(k));
+            bool res = (bool)_tree.arase(&_root->parent, bind(k));
             if(res)
                 --_size;
             return res;

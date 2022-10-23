@@ -73,6 +73,7 @@ namespace ft {
 
         map_iterator operator++(int){
             map_iterator<T> tmp(*this);
+            ++(*this);
             return tmp;
         }
 
