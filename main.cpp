@@ -73,11 +73,19 @@ void start_test_map(){
 	test_map_equal_range();
 	test_map_erase();
 	test_map_find();
+	test_map_insert();
+	test_map_key_kompare();
+	test_map_lower_bound();
+	test_map_upper_bound();
+	test_map_rbegin();
+	test_map_rend();
+	test_map_swap();
+	test_map_operator2();
+	test_map_operator3();
 }
 
 
 int main(int av, char** ac) {
-	test_map_end();
 	if (av == 2){
 		if(!strncmp("1", ac[1], 1)){
 			print_header("VECTOR");

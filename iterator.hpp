@@ -305,7 +305,7 @@ namespace ft {
 
         pointer operator->() const {
             T tmp = _val;
-            return *(--tmp);
+            return &(operator*());
         }
 
         reverse_iterator& operator++() {

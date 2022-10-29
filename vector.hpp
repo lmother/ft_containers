@@ -299,8 +299,6 @@ namespace ft{
         }
 
         void swap (vector& x) {
-            if (x == *this)
-                return;
             swap_obj(x._alloc, _alloc);
             swap_obj(x._pointer, _pointer);
             swap_obj(x._size, _size);

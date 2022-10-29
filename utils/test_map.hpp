@@ -553,3 +553,421 @@ void test_map_find(){
     compare_vectors(res, ft_res, "test4", time_std_end, time_ft_end);
 
 }
+
+void test_map_insert(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+    std::map<char,int> mymap;
+    ft::map<char,int> ft_mymap;
+
+
+    print_header_test("insert()...");
+
+    time_std = clock();
+    mymap.insert ( std::pair<char,int>('a',100) );
+    mymap.insert ( std::pair<char,int>('z',200) );
+    time_std_end = clock() - time_std;
+
+    time_ft = clock();
+    ft_mymap.insert ( ft::pair<char,int>('a',100) );
+    ft_mymap.insert ( ft::pair<char,int>('z',200) );
+    time_ft_end = clock() - time_ft;
+    compare_maps(mymap, ft_mymap, "test1", time_std_end, time_ft_end);
+
+
+  // second insert function version (with hint position):
+    std::map<char,int>::iterator it = mymap.begin();
+    ft::map<char,int>::iterator ft_it = ft_mymap.begin();
+
+    time_std = clock();
+    mymap.insert (it, std::pair<char,int>('b',300));
+    mymap.insert (it, std::pair<char,int>('c',400));
+    time_std_end = clock() - time_std;
+
+    time_ft = clock();
+    ft_mymap.insert (ft_it, ft::pair<char,int>('b',300));
+    ft_mymap.insert (ft_it, ft::pair<char,int>('c',400));
+    time_ft_end = clock() - time_ft;
+    compare_maps(mymap, ft_mymap, "test2", time_std_end, time_ft_end);
+
+
+
+    std::map<char,int> anothermap;
+    ft::map<char,int> ft_anothermap;
+
+    time_std = clock();
+    anothermap.insert(mymap.begin(),mymap.find('c'));
+    time_std_end = clock() - time_std;
+
+    time_ft = clock();
+    ft_anothermap.insert(ft_mymap.begin(),ft_mymap.find('c'));
+    time_ft_end = clock() - time_ft;
+    compare_maps(mymap, ft_mymap, "test3", time_std_end, time_ft_end);
+
+}
+
+
+void test_map_key_kompare(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+    std::map<char,int> mymap;
+    ft::map<char,int> ft_mymap;
+
+    mymap['a']=20;
+    mymap['b']=40;
+    mymap['c']=60;
+    mymap['d']=80;
+    mymap['e']=100;
+    ft_mymap['a']=20;
+    ft_mymap['b']=40;
+    ft_mymap['c']=60;
+    ft_mymap['d']=80;
+    ft_mymap['e']=100;
+
+    print_header_test("key_kompare()...");
+
+    time_std = clock();
+    std::map<char,int>::key_compare mycomp = mymap.key_comp();
+    time_std_end = clock() - time_std;
+
+    time_ft = clock();
+    ft::map<char,int>::key_compare ft_mycomp = ft_mymap.key_comp();
+    time_ft_end = clock() - time_ft;
+
+    mymap['a']=20;
+    mymap['b']=40;
+    mymap['c']=60;
+    mymap['d']=80;
+    mymap['e']=100;
+    ft_mymap['a']=20;
+    ft_mymap['b']=40;
+    ft_mymap['c']=60;
+    ft_mymap['d']=80;
+    ft_mymap['e']=100;
+
+    (void) mycomp;
+    (void) ft_mycomp;
+
+    compare_maps(mymap, ft_mymap, "test1", time_std_end, time_ft_end);
+}
+
+
+void test_map_lower_bound(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+    std::map<char,int> mymap;
+    ft::map<char,int> ft_mymap;
+    std::map<char,int>::iterator itlow,itup;
+    ft::map<char,int>::iterator ft_itlow,ft_itup;
+    mymap['a']=20;
+    mymap['b']=40;
+    mymap['c']=60;
+    mymap['d']=80;
+    mymap['e']=100;
+    ft_mymap['a']=20;
+    ft_mymap['b']=40;
+    ft_mymap['c']=60;
+    ft_mymap['d']=80;
+    ft_mymap['e']=100;
+    print_header_test("lower_bound()...");
+
+    time_std = clock();
+    itlow=mymap.lower_bound ('b');
+    itup=mymap.upper_bound ('d');
+    time_std_end = clock() - time_std;
+
+    time_ft = clock();
+    ft_itlow=ft_mymap.lower_bound ('b');
+    ft_itup=ft_mymap.upper_bound ('d');
+    time_ft_end = clock() - time_ft;
+
+    mymap.erase(itlow,itup);
+    ft_mymap.erase(ft_itlow,ft_itup);
+
+    compare_maps(mymap, ft_mymap, "test1", time_std_end, time_ft_end);
+}
+
+void test_map_upper_bound(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+    std::map<char,int> mymap;
+    ft::map<char,int> ft_mymap;
+    std::map<char,int>::iterator itlow,itup;
+    ft::map<char,int>::iterator ft_itlow,ft_itup;
+    mymap['a']=20;
+    mymap['b']=40;
+    mymap['c']=60;
+    mymap['d']=80;
+    mymap['e']=100;
+    ft_mymap['a']=20;
+    ft_mymap['b']=40;
+    ft_mymap['c']=60;
+    ft_mymap['d']=80;
+    ft_mymap['e']=100;
+    print_header_test("lower_bound()...");
+
+    time_std = clock();
+    itlow=mymap.lower_bound ('b');
+    itup=mymap.upper_bound ('d');
+    time_std_end = clock() - time_std;
+
+    time_ft = clock();
+    ft_itlow=ft_mymap.lower_bound ('b');
+    ft_itup=ft_mymap.upper_bound ('d');
+    time_ft_end = clock() - time_ft;
+
+    mymap.erase(itlow,itup);
+    ft_mymap.erase(ft_itlow,ft_itup);
+
+    compare_maps(mymap, ft_mymap, "test1", time_std_end, time_ft_end);
+}
+
+void test_map_rbegin(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+    std::map<char,int> mymap;
+    ft::map<char,int> ft_mymap;
+    std::vector<int> std_vec;
+    ft::vector<int> ft_vec;
+
+    mymap['a']=20;
+    mymap['b']=40;
+    mymap['c']=60;
+    mymap['d']=80;
+    mymap['e']=100;
+    ft_mymap['a']=20;
+    ft_mymap['b']=40;
+    ft_mymap['c']=60;
+    ft_mymap['d']=80;
+    ft_mymap['e']=100;
+
+    print_header_test("rbegin()...");
+
+    std::map<char,int>::reverse_iterator rit;
+    ft::map<char,int>::reverse_iterator ft_rit;
+
+    time_std = clock();
+    for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+        std_vec.push_back(rit->second);
+    time_std_end = clock() - time_std;
+
+
+    time_ft = clock();
+    for (ft_rit=ft_mymap.rbegin(); ft_rit!=ft_mymap.rend(); ++ft_rit)
+        ft_vec.push_back(ft_rit->second);
+    time_ft_end = clock() - time_ft;
+
+    compare_vectors(std_vec, ft_vec, "test1", time_std_end, time_ft_end);
+
+}
+
+void test_map_rend(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+    std::map<char,int> mymap;
+    ft::map<char,int> ft_mymap;
+    std::vector<int> std_vec;
+    ft::vector<int> ft_vec;
+
+    mymap['a']=20;
+    mymap['b']=40;
+    mymap['c']=60;
+    mymap['d']=80;
+    mymap['e']=100;
+    ft_mymap['a']=20;
+    ft_mymap['b']=40;
+    ft_mymap['c']=60;
+    ft_mymap['d']=80;
+    ft_mymap['e']=100;
+
+    print_header_test("rend()...");
+
+    std::map<char,int>::reverse_iterator rit;
+    ft::map<char,int>::reverse_iterator ft_rit;
+
+    time_std = clock();
+    for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+        std_vec.push_back(rit->second);
+    time_std_end = clock() - time_std;
+
+
+    time_ft = clock();
+    for (ft_rit=ft_mymap.rbegin(); ft_rit!=ft_mymap.rend(); ++ft_rit)
+        ft_vec.push_back(ft_rit->second);
+    time_ft_end = clock() - time_ft;
+
+    compare_vectors(std_vec, ft_vec, "test1", time_std_end, time_ft_end);
+
+}
+
+void test_map_swap(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+
+    std::map<char,int> foo,bar;
+    ft::map<char,int> ft_foo,ft_bar;
+
+    print_header_test("swap()...");
+
+    foo['x']=100;
+    foo['y']=200;
+
+    bar['a']=11;
+    bar['b']=22;
+    bar['c']=33;
+    ft_foo['x']=100;
+    ft_foo['y']=200;
+
+    ft_bar['a']=11;
+    ft_bar['b']=22;
+    ft_bar['c']=33;
+
+    time_std = clock();
+    foo.swap(bar);
+    time_std_end = clock() - time_std;
+
+    time_ft = clock();
+    ft_foo.swap(ft_bar);
+    time_ft_end = clock() - time_ft;
+
+    compare_maps(foo, ft_foo, "test1", time_std_end, time_ft_end);
+    compare_maps(bar, ft_bar, "test2", time_std_end, time_ft_end);
+}
+
+void test_map_operator2(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+
+    std::map<char,int> mymap;
+    ft::map<char,int> ft_mymap;
+
+    print_header_test("operator[]...");
+
+    time_std = clock();
+    mymap['a']=10;
+    mymap['b']=30;
+    mymap['c']=50;
+    mymap['d']=70;
+    time_std_end = clock() - time_std;
+        
+    time_ft = clock();
+    ft_mymap['a']=10;
+    ft_mymap['b']=30;
+    ft_mymap['c']=50;
+    ft_mymap['d']=70;
+    time_ft_end = clock() - time_ft;
+    compare_maps(mymap, ft_mymap, "test1", time_std_end, time_ft_end);
+}
+
+void test_map_operator3(){
+    unsigned int time_std;
+    unsigned int time_std_end;
+    unsigned int time_ft;
+    unsigned int time_ft_end;
+
+    std::map<char,int> foo, bar;
+    ft::map<char,int> ft_foo, ft_bar;
+    std::vector<bool> res;
+    ft::vector<bool> ft_res;
+
+    ft_foo['a']=20;
+    ft_foo['b']=40;
+    ft_bar['c']=60;
+    ft_bar['d']=80;
+    foo['a']=20;
+    foo['b']=40;
+    bar['c']=60;
+    bar['d']=80;
+
+    print_header_test("operator==...");
+
+    time_std = clock();
+    res.push_back(foo == bar);
+    time_std_end = clock() - time_std;
+
+
+    time_ft = clock();
+    ft_res.push_back(ft_foo == ft_bar);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(res, ft_res, "test1", time_std_end, time_ft_end);
+
+    print_header_test("operator!=...");
+
+    time_std = clock();
+    res.push_back(foo != bar);
+    time_std_end = clock() - time_std;
+
+
+    time_ft = clock();
+    ft_res.push_back(ft_foo != ft_bar);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(res, ft_res, "test1", time_std_end, time_ft_end);
+
+    print_header_test("operator<...");
+
+    time_std = clock();
+    res.push_back(foo < bar);
+    time_std_end = clock() - time_std;
+
+
+    time_ft = clock();
+    ft_res.push_back(ft_foo < ft_bar);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(res, ft_res, "test1", time_std_end, time_ft_end);
+
+
+    print_header_test("operator>...");
+
+    time_std = clock();
+    res.push_back(foo > bar);
+    time_std_end = clock() - time_std;
+
+
+    time_ft = clock();
+    ft_res.push_back(ft_foo > ft_bar);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(res, ft_res, "test1", time_std_end, time_ft_end);
+
+    print_header_test("operator<=...");
+
+    time_std = clock();
+    res.push_back(foo <= bar);
+    time_std_end = clock() - time_std;
+
+
+    time_ft = clock();
+    ft_res.push_back(ft_foo <= ft_bar);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(res, ft_res, "test1", time_std_end, time_ft_end);
+
+
+    print_header_test("operator>=...");
+
+    time_std = clock();
+    res.push_back(foo >= bar);
+    time_std_end = clock() - time_std;
+
+
+    time_ft = clock();
+    ft_res.push_back(ft_foo >= ft_bar);
+    time_ft_end = clock() - time_ft;
+    compare_vectors(res, ft_res, "test1", time_std_end, time_ft_end);
+    
+}
+
